@@ -19,7 +19,6 @@ import state.WaiterState;
 
 public class CustomerMediator {
 
-	
 	public void customerLeave(Customer customer, Chef chef) {
 		Restaurant resto = Restaurant.getInstance();
 		ArrayList<Customer> customers = resto.getCustomers();
@@ -56,6 +55,11 @@ public class CustomerMediator {
 			
 			resto.reducePoint();
 		}
+	}
+	
+	public void sendOrder(Customer customer, Chef chef) {
+		chef.getPhase().changeState(customer);
+		((CustomerWaitFood)customer.getPhase()).changeState(chef);
 	}
 
 	public void waiterReceive(Waiter waiter, Customer customer) {

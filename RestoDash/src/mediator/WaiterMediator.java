@@ -21,11 +21,6 @@ public class WaiterMediator {
 		customer.getPhase().changeState(waiter);
 	}
 	
-	public void sendOrder(Customer customer, Chef chef) {
-		chef.getPhase().changeState(customer);
-		((CustomerWaitFood)customer.getPhase()).changeState(chef);
-	}
-	
 	public void orderDone(	Waiter waiter, Customer customer, Chef chef) {
 		((ChefDone)chef.getPhase()).getCustomer().getPhase().changeState(waiter);
 		chef.getPhase().changeState(customer);

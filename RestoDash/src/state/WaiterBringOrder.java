@@ -1,5 +1,6 @@
 package state;
 
+import mediator.CustomerMediator;
 import mediator.WaiterMediator;
 import models.Chef;
 import models.Customer;
@@ -65,8 +66,9 @@ public class WaiterBringOrder extends WaiterState implements Runnable{
 			return;
 		}
 		WaiterMediator waiterM = new WaiterMediator();
+		CustomerMediator customerM = new CustomerMediator();
 		if(this.chef.getPhase() instanceof ChefIdle) {
-			waiterM.sendOrder(this.customer, this.chef);
+			customerM.sendOrder(this.customer, this.chef);
 			toIdle();
 		} else if(this.chef.getPhase() instanceof ChefDone) {
 			Customer currCust = this.customer;
